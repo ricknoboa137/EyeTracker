@@ -444,7 +444,7 @@ def mediapipe_3d_pose_and_gaze():
         min_detection_confidence=0.5,
         min_tracking_confidence=0.5)
 
-    cap = cv2.VideoCapture(1) # Open the default webcam (index 0 for main camera)
+    cap = cv2.VideoCapture(0) # Open the default webcam (index 0 for main camera)
 
     if not cap.isOpened():
         print("Error: Could not open webcam. Make sure it's not in use by another application and is properly connected. Exiting.")
