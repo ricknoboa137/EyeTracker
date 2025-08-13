@@ -37,7 +37,7 @@ SCREEN_HEIGHT_MM = 216
 SCREEN_DISTANCE_MM = 510 # Distance from camera (lens) to screen center
 CAMERA_OFFSET_X_MM = 420   # How far left/right the camera is from screen center line
 CAMERA_OFFSET_Y_MM = 280 # How far up/down the camera is from screen center line (negative for above center)
-CAMERA_OFFSET_Z_MM = 50   # Usually 0, or positive if camera is behind the screen plane (unlikely)
+CAMERA_OFFSET_Z_MM = 0   # Usually 0, or positive if camera is behind the screen plane (unlikely)
 
 # Calibration points (9 points: corners, midpoints, center) normalized to 0-1 range
 # These will be scaled to SCREEN_WIDTH_PX, SCREEN_HEIGHT_PX
@@ -444,7 +444,7 @@ def mediapipe_3d_pose_and_gaze():
         min_detection_confidence=0.5,
         min_tracking_confidence=0.5)
 
-    cap = cv2.VideoCapture(0) # Open the default webcam (index 0 for main camera)
+    cap = cv2.VideoCapture(1) # Open the default webcam (index 0 for main camera)
 
     if not cap.isOpened():
         print("Error: Could not open webcam. Make sure it's not in use by another application and is properly connected. Exiting.")
@@ -452,8 +452,8 @@ def mediapipe_3d_pose_and_gaze():
 
     # --- Set a fixed resolution for the webcam for consistency ---
     # This often helps with MediaPipe's internal graph stability and predictable behavior.
-    desired_width = 640
-    desired_height = 480
+    desired_width = 1920
+    desired_height = 1080
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, desired_width)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, desired_height)
 
@@ -772,7 +772,7 @@ def mediapipe_3d_pose_and_gaze():
             # This is just for visual debugging on the webcam frame.
             display_x = int(screen_gaze_x / SCREEN_WIDTH_PX * image_width)
             display_y = int(screen_gaze_y / SCREEN_HEIGHT_PX * image_height)
-            cv2.circle(frame, (display_x, display_y), 5, (255, 0, 255), -1) 
+            cv2.circle(frame, (display_x, display_y), 15, (255, 0, 255), -1) 
         else:
             cv2.putText(frame, "Screen Gaze: N/A", (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 255), 1)
         #frame = cv2.flip(frame, 1)
