@@ -21,8 +21,8 @@ mp_face_mesh = mp.solutions.face_mesh
 mp_drawing = mp.solutions.drawing_utils
 drawing_spec = mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
 # Your monitor's resolution (in pixels)
-SCREEN_WIDTH_PX = 1920
-SCREEN_HEIGHT_PX = 1080
+SCREEN_WIDTH_PX = 3840
+SCREEN_HEIGHT_PX = 2400
 # Physical dimensions of your screen (e.g., a 24-inch monitor might be ~531mm wide, 298mm high)
 # These are used to model the screen in 3D space. MEASURE YOUR OWN SCREEN!
 SCREEN_WIDTH_MM = 385
@@ -452,8 +452,8 @@ def mediapipe_3d_pose_and_gaze():
 
     # --- Set a fixed resolution for the webcam for consistency ---
     # This often helps with MediaPipe's internal graph stability and predictable behavior.
-    desired_width = 1920
-    desired_height = 1080
+    desired_width = 3800
+    desired_height = 2400
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, desired_width)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, desired_height)
 
